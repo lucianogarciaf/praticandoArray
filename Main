@@ -1,0 +1,48 @@
+package listaseMapeamentos;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		List<Produto> produtos = new ArrayList<>();
+		produtos.add(new Produto("Maça", "Fruta", 2.5));
+		produtos.add(new Produto("Banana", "Fruta", 1.8));
+		produtos.add(new Produto("Leite", "Laticinio", 3.0));
+		produtos.add(new Produto("Queijo", "Laticinio", 5.5));
+		produtos.add(new Produto("Televisão", "Eletrônicos", 1500.0));
+		produtos.add(new Produto("Geladeira", "Eletrônicos", 1200.0));
+		produtos.add(new Produto("Iphone", "Eletrônicos", 3000.0));
+		produtos.add(new Produto("Motorola G42", "Eletrônicos", 1500.0));
+		produtos.add(new Produto("Frigobar", "Eletrônicos", 2000.0));
+		produtos.remove(0);
+		Produto produto1 = new Produto("acerola", "Fruta", 8);
+		produtos.add(produto1);
+		produtos.remove(3);
+		produtos.add(1, new Produto("Goiaba", "Fruta", 3));
+		System.out.println(produtos.get(0).getCategoria());
+		
+		Map<String, List<Produto>> produtosPorCategoria = new HashMap<>();
+		
+		for (Produto produto : produtos) {
+            if (!produtosPorCategoria.containsKey(produto.getCategoria())) {
+                produtosPorCategoria.put(produto.getCategoria(), new ArrayList<>());
+            }
+            produtosPorCategoria.get(produto.getCategoria()).add(produto);
+        }
+		
+			
+		// Exibindo os produtos agrupados por categoria
+        for (String categoria : produtosPorCategoria.keySet()) {
+            System.out.println("Categoria: " + categoria);
+            for (Produto produto : produtosPorCategoria.get(categoria)) {
+                System.out.println("- " + produto.getNome() + ": R$" + produto.getPreco());
+            }
+            System.out.println();
+        }
+        
+		
+	}
+
+}
